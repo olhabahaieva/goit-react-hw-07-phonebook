@@ -2,7 +2,7 @@ import css from './Phonebook.module.css';
 import Section from 'components/Section';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addContacts } from 'redux/phonebook-reducer';
+import { addContacts } from 'redux/phonebookSlice';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 

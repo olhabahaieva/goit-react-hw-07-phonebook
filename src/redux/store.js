@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'; // Import from vanilla Redux
-import { contactsSlice, filterSlice } from 'redux/phonebook-reducer';
+import { contactsSlice, filterSlice } from 'redux/phonebookSlice';
 import {
   FLUSH,
   REHYDRATE,
