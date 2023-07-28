@@ -2,15 +2,24 @@ import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts, selectContacts } from 'redux/selectors';
 import { deleteContact} from 'redux/operations';
+import { setStatusFilter } from 'redux/filterSlice';
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
+  const filter = useSelector(selectContacts);
   const handleDeleteClick = (contactId) => {
     dispatch(deleteContact(contactId));
   };
+
+    const filteredContacts = () =>{
+    const normalizaFilter = filter.toLowerCase();
+  return contacts.filter(contact=>
+    contact.name.toLocaleLowerCase().includes(normalizaFilter)
+    );
+  }
 
   return (
     <Section title="Contacts">
@@ -19,7 +28,7 @@ const Contacts = () => {
           Find contacts by name
         </label>
         <input
-          // onChange={(e) => dispatch(addFilter(e.target.value))}
+          onChange={()=> filteredContacts(setStatusFilter.active)}
           className={css.filterInput}
           type="search"
         />
