@@ -19,7 +19,8 @@ function Phonebook() {
     <>
       <Section title="Phonebook">
         <div className={css.phonebook}>
-          <form className={css.form} action="" onSubmit={() => handleSubmit}>
+          {/* Remove parentheses from onSubmit */}
+          <form className={css.form} action="" onSubmit={handleSubmit}>
             <label className={css.label} htmlFor="name">
               Name
             </label>
@@ -38,6 +39,7 @@ function Phonebook() {
     </>
   );
 }
+
 
 Phonebook.propTypes = {
   state: PropTypes.array,
