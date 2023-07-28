@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useSelector } from 'react-redux';
-import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 // import { addFilter, deleteContact } from 'redux/phonebookSlice';
 
 const Contacts = () => {
