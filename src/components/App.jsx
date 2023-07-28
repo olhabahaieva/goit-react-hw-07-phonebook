@@ -15,6 +15,8 @@ export const App = () => {
     dispatch(fetchContact());
   }, [dispatch]);
 
+  const isDataLoaded = useSelector((state) => state.contacts.items.length > 0);
+
   return (
     <div
       style={{
@@ -29,6 +31,7 @@ export const App = () => {
     >
       <Phonebook />
       {isLoading && !error && <b>Request in progress...</b>}
+      {isDataLoaded ? <Contacts /> : null}
       <Contacts />
     </div>
   );

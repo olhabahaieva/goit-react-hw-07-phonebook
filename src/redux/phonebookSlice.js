@@ -31,18 +31,17 @@ const deleteContactFulfilledReducer = (state, action) => {
   state.items.splice(index, 1, action.payload);
 };
 
-//Redux Slice
+// Redux Slice
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: {
-      items: [],
-      isLoading: false,
-      error: null,
-    },
-    filter: '',
+    items: [],
+    isLoading: false,
+    error: null,
   },
   
+  reducers: {},
+
   extraReducers: builder =>
     builder
       .addCase(fetchContact.pending, pendingReducer)
@@ -57,6 +56,7 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+
 
 
 
