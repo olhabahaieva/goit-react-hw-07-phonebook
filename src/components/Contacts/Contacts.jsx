@@ -7,9 +7,10 @@ import { deleteContact } from 'redux/operations';
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const handleDeleteClick = () => dispatch(deleteContact(contacts.items.id));
   const contacts = useSelector(getContacts);
-  console.log(contacts)
+  const handleDeleteClick = (contactId) => {
+    dispatch(deleteContact(contactId));
+  };
 
   return (
     <Section title="Contacts">
