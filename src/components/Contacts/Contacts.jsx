@@ -22,10 +22,8 @@ const Contacts = () => {
 
       <ul className={css.contacts}>
         {contacts.items.map(contact => (
-          
           <li key={contact.id || ''}>
-            {console.log(contact.id)}
-            {contact.name} : {contact.number}
+            {contact.name} : {contact.phone}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
               className={css.delete}
