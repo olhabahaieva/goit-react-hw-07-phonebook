@@ -6,7 +6,7 @@ import { addContact } from 'redux/operations';
 function Phonebook() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
     const name = form.elements.name.value;
@@ -19,7 +19,6 @@ function Phonebook() {
     <>
       <Section title="Phonebook">
         <div className={css.phonebook}>
-          {/* Remove parentheses from onSubmit */}
           <form className={css.form} action="" onSubmit={handleSubmit}>
             <label className={css.label} htmlFor="name">
               Name
@@ -39,7 +38,6 @@ function Phonebook() {
     </>
   );
 }
-
 
 Phonebook.propTypes = {
   state: PropTypes.array,
