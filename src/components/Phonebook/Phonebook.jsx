@@ -1,7 +1,7 @@
 import css from './Phonebook.module.css';
 import Section from 'components/Section';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 function Phonebook() {
   const dispatch = useDispatch();
