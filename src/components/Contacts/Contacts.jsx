@@ -6,10 +6,10 @@ import { getContacts } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
 
 const Contacts = () => {
-  const dispatch = useDispatch()
-  const handleDeleteClick = () => dispatch(deleteContact());
+  const dispatch = useDispatch();
+  const handleDeleteClick = () => dispatch(deleteContact(contacts.items.id));
   const contacts = useSelector(getContacts);
- 
+  console.log(contacts)
 
   return (
     <Section title="Contacts">
@@ -30,7 +30,7 @@ const Contacts = () => {
             {contact.text.name} : {contact.text.number}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
-              onClick={() => handleDeleteClick(contact.id)}
+              onClick={handleDeleteClick}
               className={css.delete}
             >
               Delete

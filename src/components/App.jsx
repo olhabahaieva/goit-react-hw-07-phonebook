@@ -33,7 +33,7 @@ export const App = () => {
       <Phonebook />
       {/* {isLoading && !error && <b>Request in progress...</b>}
       {isDataLoaded ? <Contacts /> : null} */}
-      <Contacts />
+      <Contacts/>
     </div>
   );
 };
