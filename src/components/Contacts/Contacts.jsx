@@ -11,20 +11,16 @@ const Contacts = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(selectStatusFilter);
 
-  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
-
-
-  // const handleFilterChange = event => {
-  //   const inputValue = event.target.value;
-  //   dispatch(setStatusFilter(inputValue));
-  // };
+  const handleFilterChange = event => {
+    const inputValue = event.target.value;
+    dispatch(setStatusFilter(inputValue)); // Pass only the input value to the action creator
+  };
 
   const handleDeleteClick = contactId => {
     dispatch(deleteContact(contactId));
   };
 
   const filteredContacts = () => {
-
     if (!filter.status || filter.status === '') {
       return contacts.items;
     }
@@ -67,6 +63,7 @@ const Contacts = () => {
 };
 
 export default Contacts;
+
 
 
 // import React from 'react';
