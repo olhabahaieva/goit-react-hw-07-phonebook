@@ -31,7 +31,7 @@ const Contacts = () => {
             {contact.text.name} : {contact.text.number}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
-              onClick={handleDeleteClick}
+              onClick={() => handleDeleteClick(contact.id)}
               className={css.delete}
             >
               Delete
