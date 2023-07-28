@@ -6,7 +6,6 @@ import { getContacts } from 'redux/selectors';
 
 const Contacts = () => {
   const contacts = useSelector(getContacts);
-  console.log(contacts)
 
   return (
     <Section title="Contacts">
@@ -22,9 +21,11 @@ const Contacts = () => {
       </div>
 
       <ul className={css.contacts}>
-       
-          <li key={contacts.id}>
-            {contacts.name} : {contacts.number}
+        {contacts.items.map(contact => (
+          
+          <li key={contact.id || ''}>
+            {console.log(contact.id)}
+            {contact.name} : {contact.number}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
               className={css.delete}
@@ -32,14 +33,13 @@ const Contacts = () => {
               Delete
             </button>
           </li>
-     
+        ))}
       </ul>
     </Section>
   );
 };
 
 export default Contacts;
-
 
 // import React from 'react';
 // import css from './Contacts.module.css';
