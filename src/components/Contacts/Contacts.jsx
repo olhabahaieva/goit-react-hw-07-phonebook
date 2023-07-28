@@ -7,16 +7,16 @@ import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 
 const Contacts = () => {
     const contacts = useSelector(selectContacts);
-    const isLoading = useSelector(selectIsLoading);
-    const error = useSelector(selectError);
+    // const isLoading = useSelector(selectIsLoading);
+    // const error = useSelector(selectError);
   
-    if (isLoading) {
-      return <b>Loading...</b>;
-    }
+    // if (isLoading) {
+    //   return <b>Loading...</b>;
+    // }
   
-    if (error) {
-      return <b>Error: {error}</b>;
-    }
+    // if (error) {
+    //   return <b>Error: {error}</b>;
+    // }
   
     if (!Array.isArray(contacts) || contacts.length === 0) {
       return (
