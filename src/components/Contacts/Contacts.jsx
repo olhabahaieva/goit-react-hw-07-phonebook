@@ -1,11 +1,15 @@
 import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 
 const Contacts = () => {
+  const dispatch = useDispatch()
+  const handleDeleteClick = () => dispatch(deleteContact());
   const contacts = useSelector(getContacts);
+ 
 
   return (
     <Section title="Contacts">
@@ -26,6 +30,7 @@ const Contacts = () => {
             {contact.name} : {contact.phone}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
+              onClick={() => handleDeleteClick(contact.id)}
               className={css.delete}
             >
               Delete
