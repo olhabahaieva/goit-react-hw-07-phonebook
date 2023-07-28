@@ -7,6 +7,10 @@ export const selectIsLoading = state => state.contacts.items;
 
 export const selectError = state => state.contacts.error;
 
+export const getContacts = (store) => {
+    return store.contacts;
+  };
+
 // export const selectVisibleContacts = createSelector(
 //     const contacts = useSelector(selectContacts)
 //     // [selectContacts],
