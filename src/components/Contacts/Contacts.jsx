@@ -2,24 +2,38 @@ import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, selectContacts } from 'redux/selectors';
-import { deleteContact} from 'redux/operations';
+import { getContacts, selectStatusFilter } from 'redux/selectors';
+import { deleteContact } from 'redux/operations';
 import { setStatusFilter } from 'redux/filterSlice';
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const filter = useSelector(selectContacts);
-  const handleDeleteClick = (contactId) => {
+  const filter = useSelector(selectStatusFilter);
+
+  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
+
+
+  // const handleFilterChange = event => {
+  //   const inputValue = event.target.value;
+  //   dispatch(setStatusFilter(inputValue));
+  // };
+
+  const handleDeleteClick = contactId => {
     dispatch(deleteContact(contactId));
   };
 
-    const filteredContacts = () =>{
-    const normalizaFilter = filter.toLowerCase();
-  return contacts.filter(contact=>
-    contact.name.toLocaleLowerCase().includes(normalizaFilter)
+  const filteredContacts = () => {
+
+    if (!filter.status || filter.status === '') {
+      return contacts.items;
+    }
+
+    const normalizedFilter = filter.status.toLowerCase();
+    return contacts.items.filter(contact =>
+      contact.text.name.toLowerCase().includes(normalizedFilter)
     );
-  }
+  };
 
   return (
     <Section title="Contacts">
@@ -28,18 +42,18 @@ const Contacts = () => {
           Find contacts by name
         </label>
         <input
-          onChange={()=> filteredContacts(setStatusFilter.active)}
+          onChange={handleFilterChange}
+          value={filter.status}
           className={css.filterInput}
           type="search"
         />
       </div>
 
       <ul className={css.contacts}>
-        {contacts.items.map(contact => (
+        {filteredContacts().map(contact => (
           <li key={contact.id}>
             {contact.text.name} : {contact.text.number}
             <button
-              // onClick={() => handleDeleteClick(contact.id)}
               onClick={() => handleDeleteClick(contact.id)}
               className={css.delete}
             >
@@ -53,6 +67,7 @@ const Contacts = () => {
 };
 
 export default Contacts;
+
 
 // import React from 'react';
 // import css from './Contacts.module.css';
