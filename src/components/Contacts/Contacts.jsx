@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { deleteContact, fetchContact } from 'redux/operations';
+import { deleteContact} from 'redux/operations';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -11,10 +11,6 @@ const Contacts = () => {
   const handleDeleteClick = (contactId) => {
     dispatch(deleteContact(contactId));
   };
-
-  useEffect(()=>{
-    dispatch(deleteContact());
-  }, [dispatch]);
 
   return (
     <Section title="Contacts">
