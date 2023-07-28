@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import Phonebook from './Phonebook/Phonebook';
-// import Contacts from './Contacts';
-import { useDispatch } from 'react-redux';
+import Contacts from './Contacts';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchContact } from 'redux/operations';
-// import { selectError, selectIsLoading } from 'redux/selectors';
-import Contacts from './Contacts/Contacts';
+import { selectError, selectIsLoading } from 'redux/selectors';
+// import Contacts from './Contacts/Contacts';
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(()=>{
     dispatch(fetchContact());
@@ -28,7 +28,7 @@ export const App = () => {
       }}
     >
       <Phonebook />
-      {/* {isLoading && !error && <b>Request in progress...</b>} */}
+      {isLoading && !error && <b>Request in progress...</b>}
       <Contacts />
     </div>
   );
