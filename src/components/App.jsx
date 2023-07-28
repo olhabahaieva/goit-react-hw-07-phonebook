@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react';
 import Phonebook from './Phonebook/Phonebook';
 import Contacts from './Contacts';
+// eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContact } from 'redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
+// import { selectError, selectIsLoading } from 'redux/selectors';
 // import Contacts from './Contacts/Contacts';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
 
   useEffect(()=>{
     dispatch(fetchContact());
   }, [dispatch]);
 
-  const isDataLoaded = useSelector((state) => state.contacts.items.length > 0);
+  // const isDataLoaded = useSelector((state) => state.contacts.items.length > 0);
 
   return (
     <div
@@ -30,8 +31,8 @@ export const App = () => {
       }}
     >
       <Phonebook />
-      {isLoading && !error && <b>Request in progress...</b>}
-      {isDataLoaded ? <Contacts /> : null}
+      {/* {isLoading && !error && <b>Request in progress...</b>}
+      {isDataLoaded ? <Contacts /> : null} */}
       <Contacts />
     </div>
   );
