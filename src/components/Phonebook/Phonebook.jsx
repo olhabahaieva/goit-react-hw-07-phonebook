@@ -6,10 +6,12 @@ import { addContact } from 'redux/operations';
 function Phonebook() {
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    dispatch(addContact(e.target.elements.text.value));
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 
