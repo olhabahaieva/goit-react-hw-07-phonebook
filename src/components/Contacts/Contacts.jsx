@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
-import { deleteContact } from 'redux/operations';
+import { deleteContact, fetchContact } from 'redux/operations';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -11,6 +11,10 @@ const Contacts = () => {
   const handleDeleteClick = (contactId) => {
     dispatch(deleteContact(contactId));
   };
+
+  useEffect(()=>{
+    dispatch(deleteContact());
+  }, [dispatch]);
 
   return (
     <Section title="Contacts">
@@ -27,7 +31,7 @@ const Contacts = () => {
 
       <ul className={css.contacts}>
         {contacts.items.map(contact => (
-          <li key={contact.id || ''}>
+          <li key={contact.id}>
             {contact.text.name} : {contact.text.number}
             <button
               // onClick={() => handleDeleteClick(contact.id)}
