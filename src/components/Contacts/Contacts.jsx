@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, selectFilter} from 'redux/selectors';
+import { getContacts, selectFilter } from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
 import { setFilter } from 'redux/filterSlice';
 
@@ -16,8 +16,10 @@ const Contacts = () => {
     dispatch(setFilter(inputValue.toLowerCase()));
   };
 
-  const handleDeleteClick = contactId => {
-    dispatch(deleteContact(contactId));
+  const handleDeleteClick = async contactId => {
+    try {
+      await dispatch(deleteContact(contactId));
+    } catch (error) {}
   };
 
   const filteredContacts = () => {
