@@ -9,14 +9,10 @@ import { fetchContact } from 'redux/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchContact());
   }, [dispatch]);
-
-  // const isDataLoaded = useSelector((state) => state.contacts.items.length > 0);
 
   return (
     <div
@@ -31,12 +27,11 @@ export const App = () => {
       }}
     >
       <Phonebook />
-      {/* {isLoading && !error && <b>Request in progress...</b>}
-      {isDataLoaded ? <Contacts /> : null} */}
-      <Contacts/>
+      <Contacts />
     </div>
   );
 };
+
 
 // export const App = () => {
 //   // const [contactsState, setContacts] = useState([]);

@@ -1,3 +1,4 @@
+// 6th file: reducer.js
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContact, addContact, deleteContact } from './operations';
 
@@ -25,7 +26,7 @@ const addContactFulfilledReducer = (state, action) => {
 const deleteContactFulfilledReducer = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  const contactIdToDelete = action.payload.id;
+  const contactIdToDelete = action.payload;
   state.items = state.items.filter((contact) => contact.id !== contactIdToDelete);
 };
 
@@ -37,7 +38,6 @@ const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  
   reducers: {},
 
   extraReducers: builder =>
@@ -54,6 +54,7 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
+
 
 
 

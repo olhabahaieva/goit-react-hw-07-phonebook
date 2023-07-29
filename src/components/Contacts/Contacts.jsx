@@ -1,19 +1,21 @@
+// 3rd file: Contacts.js
+
 import React from 'react';
 import css from './Contacts.module.css';
 import Section from 'components/Section';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, selectStatusFilter } from 'redux/selectors';
+import { getContacts, selectFilter} from 'redux/selectors';
 import { deleteContact } from 'redux/operations';
-import { setStatusFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/filterSlice';
 
 const Contacts = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const filter = useSelector(selectStatusFilter);
+  const filter = useSelector(selectFilter);
 
   const handleFilterChange = event => {
     const inputValue = event.target.value;
-    dispatch(setStatusFilter(inputValue)); // Pass only the input value to the action creator
+    dispatch(setFilter(inputValue.toLowerCase())); // Convert input value to lowercase
   };
 
   const handleDeleteClick = contactId => {
@@ -21,11 +23,11 @@ const Contacts = () => {
   };
 
   const filteredContacts = () => {
-    if (!filter.status || filter.status === '') {
+    if (!filter || filter === '') {
       return contacts.items;
     }
 
-    const normalizedFilter = filter.status.toLowerCase();
+    const normalizedFilter = filter.toLowerCase();
     return contacts.items.filter(contact =>
       contact.text.name.toLowerCase().includes(normalizedFilter)
     );
@@ -39,7 +41,7 @@ const Contacts = () => {
         </label>
         <input
           onChange={handleFilterChange}
-          value={filter.status}
+          value={filter}
           className={css.filterInput}
           type="search"
         />
@@ -63,6 +65,7 @@ const Contacts = () => {
 };
 
 export default Contacts;
+
 
 
 

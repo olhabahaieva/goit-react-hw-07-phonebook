@@ -17,17 +17,18 @@ export const getContacts = (store) => {
     return store.contacts;
   };
 
+  export const selectFilter = state => state.filter.filter;
+  
   export const selectVisibleContacts = createSelector(
-    [selectContacts, selectStatusFilter],
-    (contacts, statusFilter) => {
-     switch (statusFilter){
-      case statusFilter.active:
-        return contacts.filter(contact => contact.completed);
-      case statusFilter.completed:
-        return contacts.filter(contact => contact.completed);
-        default:
-          return contacts;
-     }
-      
+    [selectContacts, selectFilter],
+    (contacts, filter) => {
+      if (!filter || filter === '') {
+        return contacts;
+      }
+  
+      const normalizedFilter = filter.toLowerCase();
+      return contacts.filter(contact =>
+        contact.text.name.toLowerCase().includes(normalizedFilter)
+      );
     }
   );
